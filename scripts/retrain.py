@@ -144,7 +144,8 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
   result = collections.OrderedDict()
   sub_dirs = [
     os.path.join(image_dir,item)
-    for item in gfile.ListDirectory(image_dir)]
+    for item in gfile.ListDirectory(image_dir)
+    ]
   sub_dirs = sorted(item for item in sub_dirs
                     if gfile.IsDirectory(item))
   for sub_dir in sub_dirs:
@@ -335,7 +336,7 @@ def maybe_download_and_extract(data_url):
     filepath, _ = urllib.request.urlretrieve(data_url, filepath, _progress)
     print()
     statinfo = os.stat(filepath)
-    tf.logging.info('Successfully downloaded', filename, statinfo.st_size,
+    tf.logging.info('Congrats Successfully downloaded', filename, statinfo.st_size,
                     'bytes.')
   tarfile.open(filepath, 'r:gz').extractall(dest_directory)
 
@@ -362,7 +363,7 @@ def create_bottleneck_file(bottleneck_path, image_lists, label_name, index,
   image_path = get_image_path(image_lists, label_name, index,
                               image_dir, category)
   if not gfile.Exists(image_path):
-    tf.logging.fatal('File does not exist %s', image_path)
+    tf.logging.fatal('Sorry :( File does not exist %s', image_path)
   image_data = gfile.FastGFile(image_path, 'rb').read()
   try:
     bottleneck_values = run_bottleneck_on_image(
