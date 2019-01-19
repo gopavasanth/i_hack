@@ -1,0 +1,6 @@
+
+Hello amFOSS Congrats !!
+
+Evaluation time (1-image): 0.136s
+
+test : 98.48445 %

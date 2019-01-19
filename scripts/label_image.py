@@ -131,8 +131,20 @@ if __name__ == "__main__":
   top_k = results.argsort()[-5:][::-1]
   labels = load_labels(label_file)
 
-  print('\nHello Gopa Congrats !!')
-  print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
-  template = "{} (score={:0.5f})"
+  # Writing the output in a File
+  file = open("result.txt", "w")
+  file.write('\nHello amFOSS Congrats !!\n')
+  file.write('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start) + '\n')
+  template = "{} : {:0.5f}"
   for i in top_k:
-    print(template.format(labels[i], results[i]))
+      if( results[i] > 0.1 ):
+          file.write    (template.format(labels[i], results[i]*100) + ' %')
+  file.close()
+
+    # Console Output
+  print('\nHello amFOSS Congrats !!')
+  print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
+  template = "{} : {:0.5f}"
+  for i in top_k:
+      if( results[i] > 0.1 ):
+          print(template.format(labels[i], results[i]*100) + ' %')
