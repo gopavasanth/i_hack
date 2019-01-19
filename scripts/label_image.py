@@ -131,6 +131,7 @@ if __name__ == "__main__":
   top_k = results.argsort()[-5:][::-1]
   labels = load_labels(label_file)
 
+  print('\nHello Gopa Congrats !!')
   print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
   template = "{} (score={:0.5f})"
   for i in top_k:
