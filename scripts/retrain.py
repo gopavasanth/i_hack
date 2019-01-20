@@ -141,20 +141,27 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
   if not gfile.Exists(image_dir):
     tf.logging.error("Image directory '" + image_dir + "' not found.")
     return None
+  exclude = set(['tf_files/flower_photos/test'])
   result = collections.OrderedDict()
   sub_dirs = [
     os.path.join(image_dir,item)
     for item in gfile.ListDirectory(image_dir)
     ]
-  sub_dirs = sorted(item for item in sub_dirs
+  sub_dirs = sorted(item for item in sub_dirs if item not in exclude
                     if gfile.IsDirectory(item))
+    # print directory names
+  for i in sub_dirs:
+      if i not in exclude:
+          print ('dir name : ' + i)
+
   for sub_dir in sub_dirs:
     extensions = ['jpg', 'jpeg', 'JPG', 'JPEG']
     file_list = []
     dir_name = os.path.basename(sub_dir)
     if dir_name == image_dir:
-      continue
+        continue
     tf.logging.info("Looking for images in '" + dir_name + "'")
+    print(dir_name)
     for extension in extensions:
       file_glob = os.path.join(image_dir, dir_name, '*.' + extension)
       file_list.extend(gfile.Glob(file_glob))
