@@ -1,3 +1,7 @@
+# Author
+
+This app is developed by team Gopa Vasanth, Bhanuprakash, Tarun Ravuri, Praneeth.
+
 # Overview
 
 This repo contains code for the "TensorFlow for poets 2" series of codelabs.
